@@ -1,8 +1,12 @@
 #include <Windows.h>
 #include <iostream>
+#include "hack_commands.h"
 
 // Macroses
 #define WINDOW_NAME L"Сапер"
+
+// Namespaces
+using namespace std;
 
 // Global variables
 HANDLE process_handle;
@@ -30,6 +34,20 @@ bool get_process()
 	}
 	else
 	{
+		return true;
+	}
+}
+
+bool do_command(char *command)
+{
+	if (command == "exit")
+	{
+		command::exit(0);
+		return true;
+	}
+	if (command == "info")
+	{
+		command::info();
 		return true;
 	}
 }
