@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hack_commands.h">
+    <ClInclude Include="hack_header.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,53 +1,44 @@
 #include <Windows.h>
 #include <iostream>
-#include "hack_commands.h"
-
-// Macroses
-#define WINDOW_NAME L"Сапер"
+#include "hack_header.h"
 
 // Namespaces
 using namespace std;
 
-// Global variables
-HANDLE process_handle;
-
 // Functions' prototypes
 bool get_process();
+bool do_command(int command);
 
 // Entry point
 int main()
 {
-
+	while (true)
+	{
+		system("color 0A");
+		command::main_menu();
+		int command;
+		cin >> command;
+		cout << endl;
+		do_command(command);
+	}
+	return 0;
 }
 
-// Return true if process got
-bool get_process()
+bool do_command(int command)
 {
-	DWORD process_id;
-	HWND window_handle = FindWindow(NULL, WINDOW_NAME);
-	GetWindowThreadProcessId(window_handle, &process_id);
-	CloseHandle(window_handle);
-	process_handle = OpenProcess(PROCESS_ALL_ACCESS, false, process_id);
-	if (process_handle == NULL)
+	if (command == 0)
 	{
-		return false;
-	}
-	else
-	{
+		command::hack_exit(0);
 		return true;
 	}
-}
-
-bool do_command(char *command)
-{
-	if (command == "exit")
-	{
-		command::exit(0);
-		return true;
-	}
-	if (command == "info")
+	if (command == 1)
 	{
 		command::info();
+		return true;
+	}
+	if (command == 2)
+	{
+		command::inject();
 		return true;
 	}
 }
